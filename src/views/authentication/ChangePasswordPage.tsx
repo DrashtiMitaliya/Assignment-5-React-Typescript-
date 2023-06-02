@@ -59,14 +59,14 @@ export const ChangePasswordPage: FC = () => {
             <Box className="text-start" rounded={'lg'} bg={useColorModeValue('white', 'gray.700')} boxShadow={'lg'} p={8}>
               <Stack spacing={4}>
                 <div className="mb-3">
-                  <label htmlFor="fname" className="form-label">
+                  <label htmlFor="" className="form-label">
                     <span className="text-danger fs-5">*</span> Current Password
                   </label>
                   <Field type="password" className="form-control" name="password" />
                   <div className="text-danger"><ErrorMessage name="password" /></div>
                 </div>
                 <div className="mb-3">
-                  <label htmlFor="lname" className="form-label">
+                  <label htmlFor="" className="form-label">
                     <span className="text-danger fs-5">*</span>New Password
                   </label>
                   <Field type="password" className="form-control" name="nPassword" />

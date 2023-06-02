@@ -1,6 +1,6 @@
 import React from 'react';
 import { Toaster } from 'react-hot-toast';
-
+import './App.css'
 import { Router } from './Router/Routes/Router';
 import { Header } from './Components/HeaderSection/Header';
 

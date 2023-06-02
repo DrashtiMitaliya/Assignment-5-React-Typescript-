@@ -3,29 +3,23 @@ import { Heading } from '@chakra-ui/react';
 import { Button, Flex, useColorModeValue, Stack, Box } from '@chakra-ui/react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { toast } from 'react-hot-toast';
-
 import { updateProfileValidations } from '../../Constants/validation';
 import { Messages } from '../../Constants/Messages';
+import { updateProfileFormValues } from '../../Constants/commonType';
 
-interface FormValues {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phoneNumber: string;
-}
 
 export const UpdateProfilePage = () => {
   const userProfileData = JSON.parse(localStorage.getItem('signUpData') || '');
   const currentUserData = userProfileData.find((item: { isActive: boolean }) => item.isActive === true);
 
-  const initialValues: FormValues = {
+  const initialValues: updateProfileFormValues = {
     firstName: currentUserData.firstName,
     lastName: currentUserData.lastName,
     email: currentUserData.email,
     phoneNumber: currentUserData.phoneNumber,
   };
 
-  const onSubmit = (values: FormValues) => {
+  const onSubmit = (values: updateProfileFormValues) => {
     const userProfileData = JSON.parse(localStorage.getItem('signUpData') || '');
 
     let index = userProfileData.findIndex((item: { isActive: boolean }) => item.isActive === true);

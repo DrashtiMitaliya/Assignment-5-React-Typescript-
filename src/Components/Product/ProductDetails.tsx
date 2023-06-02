@@ -8,6 +8,7 @@ import { RotatingLines } from 'react-loader-spinner';
 import { Card, CardBody, Stack, Heading, Text, Divider, Button, ButtonGroup, CardFooter } from '@chakra-ui/react';
 
 
+
 export const ProductDetails = () => {
   const { productId } = useParams<{ productId: string }>();
   const [data, setData] = useState<any>([]);
@@ -42,14 +43,14 @@ export const ProductDetails = () => {
                 ))}
               </Carousel>
             </div>
-            <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+
+            <div className="col-xl-6 col-lg-6 col-md-12 col-sm-12 m-auto">
               <Card maxW='sm' padding={15} className='m-auto'>
                 <CardBody>
                   <Stack className='m-auto'>
                     <Heading size='md' color='blue.700'>{data.title}</Heading>
                     <Text>
                       {data.description}
-
                     </Text>
                   </Stack>
                 </CardBody>

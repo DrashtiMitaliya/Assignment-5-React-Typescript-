@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
-
-import productReducer, { ProductState } from '../Reducers/ProductSlice';
+import productReducer  from '../Reducers/ProductSlice';
+import { ProductState } from "../../Constants/commonType";
 
 // Define the root state type
 export interface RootState {

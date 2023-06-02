@@ -17,24 +17,15 @@ import { Formik, Form, ErrorMessage, Field } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
 import { toast } from 'react-hot-toast';
-
 import { encryptedText } from '../../utils/cipher';
-import { signUpValidationSchema} from '../../Constants/validation';
+import { signUpValidationSchema } from '../../Constants/validation';
 import { Messages } from '../../Constants/Messages';
+import { signUpFormValues } from '../../Constants/commonType';
 
-interface FormValues {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phoneNumber: string;
-  password: string;
-  isActive: boolean;
-  confirmPassword: string;
-}
 
 export const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const initialValues: FormValues = {
+  const initialValues: signUpFormValues = {
     firstName: '',
     lastName: '',
     email: '',
@@ -45,11 +36,11 @@ export const SignUpPage = () => {
   };
   const navigate = useNavigate();
 
-  const onSubmit = (values: FormValues) => {
+  const onSubmit = (values: signUpFormValues) => {
     values.password = encryptedText(values.password);
     values.confirmPassword = encryptedText(values.confirmPassword);
 
-    let signUpData: FormValues[] = [];
+    let signUpData: signUpFormValues[] = [];
     if (localStorage.getItem('signUpData') === null) {
       signUpData = [];
     } else {
@@ -144,8 +135,8 @@ export const SignUpPage = () => {
                     <InputGroup>
                       <Field type={showPassword ? 'text' : 'password'} name='confirmPassword' className="form-control" />
                       <InputRightElement h={'full'}>
-                        <Button
-                          size='lg'
+                      <Button
+                          size='sm'
                           variant={'ghost'}
                           onClick={() =>
                             setShowPassword((showPassword) => !showPassword)

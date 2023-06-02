@@ -1,27 +1,8 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
+import { Product, ProductState } from "../../Constants/commonType";
 
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-}
 
-export interface ProductState {
-  loading: boolean;
-  products: Product[];
-  error: string;
-  totalProduct: number;
-  skip: number;
-}
-
-const initialState: ProductState = {
-  loading: false,
-  products: [],
-  error: "",
-  totalProduct: 100,
-  skip: 0,
-};
 
 // Fetch data from API
 export const fetchProducts: any = createAsyncThunk(
@@ -34,6 +15,13 @@ export const fetchProducts: any = createAsyncThunk(
   }
 );
 
+const initialState: ProductState = {
+  loading: false,
+  products: [],
+  error: "",
+  totalProduct: 100,
+  skip: 0,
+}
 const productSlice = createSlice({
   name: "products",
   initialState,

@@ -1,5 +1,5 @@
 // import from packages
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Flex,
   Box,
@@ -10,6 +10,8 @@ import {
   Heading,
   useColorModeValue,
   Text,
+  InputGroup,
+  InputRightElement,
 } from '@chakra-ui/react';
 import {
   Formik,
@@ -24,13 +26,12 @@ import { toast } from 'react-hot-toast';
 import checkLoginAuth from '../../utils/CheckLoginAuth';
 import { Messages } from '../../Constants/Messages';
 import { logInPageValidationSchema } from '../../Constants/validation';
+import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
+import {FormValues} from '../../Constants/commonType'
 
-interface FormValues {
-  email: string;
-  password: string;
-}
 
 export const LogInPage = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const isLogin = JSON.parse(localStorage.getItem("isLogin") || "false");
 
@@ -57,12 +58,12 @@ export const LogInPage = () => {
 
   return (
     <div>
+     { /* This is the LogIn form  */}
       <Formik
         initialValues={initialValues}
         validationSchema={logInPageValidationSchema}
         onSubmit={onSubmit}
       >
-        { /* This is the LogIn form  */}
         <Form>
           <Flex
             minH={'93.5vh'}
@@ -88,7 +89,22 @@ export const LogInPage = () => {
                   </FormControl>
                   <FormControl id="password">
                     <FormLabel>Password</FormLabel>
-                    <Field type="password" className="form-control" name='password' />
+                    <InputGroup>
+                      <Field type={showPassword ? 'text' : 'password'} name='password' className="form-control" />
+                      <InputRightElement h={'full'}>
+                        <Button
+                          size='sm'
+                          variant={'ghost'}
+                          onClick={() =>
+                            setShowPassword((showPassword) => !showPassword)
+                          }
+                        >
+                          {showPassword ? <BsEyeFill /> : <BsEyeSlashFill />}
+                        </Button>
+                      </InputRightElement>
+                    </InputGroup>
+
+
                     <p className='text-danger text-start'><ErrorMessage name='password'></ErrorMessage></p>
                   </FormControl>
                   <Stack spacing={15}>
